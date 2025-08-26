@@ -29,7 +29,7 @@ alias ros2-build-debug="source /opt/ros/$ROS_DISTRO/setup.bash && (cd $ROS_WS &&
 
 alias ros2-test="(cd $ROS_WS && colcon test && colcon test-result --verbose)"
 
-alias ros2-clean="(rm -rf $ROS_WS/install $ROS_WS/build $ROS_WS/log) && unset AMENT_PREFIX_PATH && source /opt/ros/$ROS_DISTRO/setup.bash"
+alias ros2-clean="(rm -rf $ROS_WS/install $ROS_WS/build $ROS_WS/log) && unset AMENT_PREFIX_PATH && unset CMAKE_PREFIX_PATH && source /opt/ros/$ROS_DISTRO/setup.bash"
 
 alias ros2-ps="ps aux | grep -E '(ros|ign)' | grep -v grep"
 
