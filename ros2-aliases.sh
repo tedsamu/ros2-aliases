@@ -4,7 +4,7 @@
 # Source this file from your ~/.bashrc to load the aliases
 
 # Version
-VERSION="1.0.0"
+VERSION="1.0.1"
 # Configuration - adjust these paths as needed
 export ROS_WS="${ROS_WS:-$HOME/ros2_ws}"
 export ROS_DISTRO="${ROS_DISTRO:-humble}"
@@ -29,7 +29,7 @@ alias ros2-build-debug="source /opt/ros/$ROS_DISTRO/setup.bash && (cd $ROS_WS &&
 
 alias ros2-test="(cd $ROS_WS && colcon test && colcon test-result --verbose)"
 
-alias ros2-clean="(rm -rf $ROS_WS/install $ROS_WS/build $ROS_WS/log) && unset AMENT_PREFIX_PATH"
+alias ros2-clean="(rm -rf $ROS_WS/install $ROS_WS/build $ROS_WS/log) && unset AMENT_PREFIX_PATH && source /opt/ros/$ROS_DISTRO/setup.bash"
 
 alias ros2-ps="ps aux | grep -E '(ros|ign)' | grep -v grep"
 
