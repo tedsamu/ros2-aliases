@@ -54,7 +54,7 @@ RUN git clone https://github.com/tedsamu/ros2-aliases.git /opt/ros2-aliases && \
 
 ### Other ROS2 Distributions (e.g., Jazzy)
 
-To use with a different ROS2 distribution, set the environment variable before installation:
+To use with a different ROS2 distribution or non-standard ros workspace, set the environment variables before installation:
 
 ```dockerfile
 # For ROS2 Jazzy
@@ -62,14 +62,6 @@ ENV ROS_DISTRO=jazzy
 ENV ROS_WS=/home/devuser/ros2_ws
 
 RUN git clone https://github.com/tedsamu/ros2-aliases.git /opt/ros2-aliases && \
-    bash /opt/ros2-aliases/install.sh
-```
-
-Or set it in a single RUN command:
-
-```dockerfile
-RUN ROS_DISTRO=jazzy ROS_WS=/path/to/workspace \
-    git clone https://github.com/tedsamu/ros2-aliases.git /opt/ros2-aliases && \
     bash /opt/ros2-aliases/install.sh
 ```
 
