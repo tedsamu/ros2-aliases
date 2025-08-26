@@ -45,7 +45,7 @@ source "/path/to/ros2-aliases.sh"
 
 ### Default (Humble)
 
-Instead of adding all those RUN commands to your Dockerfile:
+Add this to your Dockerfile:
 
 ```dockerfile
 RUN git clone https://github.com/tedsamu/ros2-aliases.git /opt/ros2-aliases && \
