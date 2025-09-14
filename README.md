@@ -1,6 +1,8 @@
 # ROS2 Aliases
 
-A collection of useful aliases and shortcuts for ROS2 development workflows.
+A collection of handy aliases and shortcuts for ROS 2 development workflows. These commands make it easy to 
+build, test, and monitor ROS 2 packages using short, easy-to-remember commands. Additionally, all commands 
+can be executed from any location — you don’t need to be inside the ROS 2 workspace to build.
 
 ## Quick Install
 
