@@ -4,7 +4,7 @@
 # Source this file from your ~/.bashrc to load the aliases
 
 # Version
-VERSION="1.1.0"
+VERSION="1.2.0"
 # Configuration - adjust these paths as needed
 export ROS_WS="${ROS_WS:-$HOME/ros2_ws}"
 export ROS_DISTRO="${ROS_DISTRO:-humble}"
@@ -44,7 +44,84 @@ ros2-build() {
     return $build_status
 }
 
-# Help and version info
+# ros2-build-release: Build with Release optimizations
+ros2-build-release() {
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    local build_status
+    if [ "$#" -eq 0 ]; then
+        (cd "$ROS_WS" && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release)
+        build_status=$?
+    else
+        (cd "$ROS_WS" && colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --packages-select "$@")
+        build_status=$?
+    fi
+    if [ $build_status -eq 0 ]; then
+        source "$ROS_WS/install/setup.bash"
+    fi
+    return $build_status
+}
+
+# ros2-build-debug: Build with Debug symbols
+ros2-build-debug() {
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    local build_status
+    if [ "$#" -eq 0 ]; then
+        (cd "$ROS_WS" && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug)
+        build_status=$?
+    else
+        (cd "$ROS_WS" && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug --packages-select "$@")
+        build_status=$?
+    fi
+    if [ $build_status -eq 0 ]; then
+        source "$ROS_WS/install/setup.bash"
+    fi
+    return $build_status
+}
+
+# ros2-test: Run all tests and show verbose results
+ros2-test() {
+    (cd "$ROS_WS" && colcon test && colcon test-result --verbose)
+}
+
+# ros2-clean: Clean build artifacts and reset env
+ros2-clean() {
+    rm -rf "$ROS_WS/install" "$ROS_WS/build" "$ROS_WS/log"
+    unset AMENT_PREFIX_PATH
+    unset CMAKE_PREFIX_PATH
+    source /opt/ros/$ROS_DISTRO/setup.bash
+}
+
+# ros2-ps: Show running ROS/Ignition processes
+ros2-ps() {
+    ps aux | grep -E '(ros|ign)' | grep -v grep
+}
+
+# ros2-kill: Kill all ROS/Ignition processes
+ros2-kill() {
+    pkill -f ros
+    pkill -f ign
+}
+
+# ros2-info: Display current ROS2 configuration and workspace status
+ros2-info() {
+    echo "ROS2 Aliases v$VERSION"
+    echo "ROS_DISTRO: $ROS_DISTRO"
+    if [ -d "$ROS_WS" ]; then
+        echo "ROS_WS: $ROS_WS"
+    else
+        echo "ROS_WS: $ROS_WS (not found)"
+    fi
+}
+
+# ros2-cd: Navigate to workspace root directory
+ros2-cd() {
+    cd "$ROS_WS"
+}
+
+# ros2-cdsrc: Navigate to workspace src directory
+ros2-cdsrc() {
+    cd "$ROS_WS/src"
+}
 
 # ros2-help: Show help message
 ros2-help() {
