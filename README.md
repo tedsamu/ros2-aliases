@@ -17,9 +17,9 @@ source ~/.bashrc
 | Alias | Description |
 |-------|-------------|
 | `ros2-source` | Source ROS2 environment and workspace |
-| `ros2-build` | Build and source workspace with RelWithDebInfo |
-| `ros2-build-release` | Build and source workspace with Release optimizations |
-| `ros2-build-debug` | Build and source workspace with Debug symbols |
+| `ros2-build [package-names]` | Build and source workspace with RelWithDebInfo.<br> _By default, all packages in the workspace are built. If one or more package names are provided, only the specified packages are built._ |
+| `ros2-build-release [package-names]` | Build and source workspace with Release optimizations.<br> _By default, all packages in the workspace are built. If one or more package names are provided, only the specified packages are built._ |
+| `ros2-build-debug [package-names]` | Build and source workspace with Debug symbols.<br> _By default, all packages in the workspace are built. If one or more package names are provided, only the specified packages are built._ |
 | `ros2-test` | Run all tests and show verbose results |
 | `ros2-clean` | Clean build artifacts and reset environment |
 | `ros2-ps` | Show running ROS/Ignition processes |
